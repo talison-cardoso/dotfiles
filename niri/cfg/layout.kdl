@@ -1,0 +1,29 @@
+layout {
+    gaps 12
+    center-focused-column "never"
+    always-center-single-column
+    background-color "transparent"
+    
+    focus-ring {
+        width 2
+    }
+	
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.99
+    }
+    
+    struts {
+      	// top 2
+      	// bottom -4
+    }
+    
+    
+    tab-indicator {
+        active-color "#37f499"
+        inactive-color "#292e42"
+        urgent-color "#a48cf2"
+    } 
+ }
