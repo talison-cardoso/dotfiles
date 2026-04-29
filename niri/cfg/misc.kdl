@@ -21,7 +21,7 @@ environment {
         // xcursor-theme "capitaine-cursors"
         xcursor-theme "Future-cursors"
         xcursor-size 28
-        hide-when-typing
+        // hide-when-typing
         hide-after-inactive-ms 5000
     }
 

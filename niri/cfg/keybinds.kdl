@@ -9,17 +9,17 @@ binds {
     Mod+Shift+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    // Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
-    // Mod+CTRL+Return                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+Return                          hotkey-overlay-title="Open Terminal: Ghostty" { spawn "sh" "-c" "ghostty || alacritty || foot || kitty"; }
     Mod+Space                           hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    // Mod+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
-    Mod+B                               hotkey-overlay-title="Open Browser: Zen Browser" { spawn "zen-browser"; }
+    Mod+B                               hotkey-overlay-title="Open Browser" { spawn "sh" "-c" "zen-browser || flatpak run app.zen_browser.zen || firefox"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
     Mod+V                               hotkey-overlay-title="Clipboard History" { spawn-sh "win11-clipboard-history"; }
     Mod+H                               hotkey-overlay-title="Heroic Games Launcher" { spawn "heroic"; }
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
+    
+    Alt+Tab repeat=false                { spawn "niriswitcherctl" "show" "--window"; }
+    Alt+Shift+Tab repeat=false          { spawn "niriswitcherctl" "show" "--window"; }
 
     // ─── Media Controls ───
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
@@ -60,24 +60,24 @@ binds {
     Mod+CTRL+WheelScrollDown            { move-column-right; }
     Mod+CTRL+WheelScrollUp              { move-column-left; }
 
-    Mod+Alt+Left                        { focus-monitor-left; }
-    Mod+Alt+Right                       { focus-monitor-right; }
-    Mod+Alt+WheelScrollUp    		{ focus-monitor-left; }
-    Mod+Alt+WheelScrollDown  		{ focus-monitor-right; } // Trocar de monitor usando scroll
+    Mod+Shift+Left                      { focus-monitor-left; }
+    Mod+Shift+Right                     { focus-monitor-right; }
+    Mod+Shift+WheelScrollUp    		{ focus-monitor-left; }
+    Mod+Shift+WheelScrollDown  		{ focus-monitor-right; } // Trocar de monitor usando scroll
     
-    Mod+Alt+CTRL+Left                   { move-column-to-monitor-left; }
-    Mod+Alt+CTRL+Right                  { move-column-to-monitor-right; }
-    Mod+Alt+CTRL+WheelScrollUp          { move-column-to-monitor-left; }
-    Mod+Alt+CTRL+WheelScrollDown        { move-column-to-monitor-right; }
+    Mod+Shift+CTRL+Left                 { move-column-to-monitor-left; }
+    Mod+Shift+CTRL+Right                { move-column-to-monitor-right; }
+    Mod+Shift+CTRL+WheelScrollUp        { move-column-to-monitor-left; }
+    Mod+Shift+CTRL+WheelScrollDown      { move-column-to-monitor-right; }
 
     // ─── Workspace Switching ───
-    Mod+Shift+WheelScrollDown           cooldown-ms=150 { focus-workspace-down; }
-    Mod+Shift+WheelScrollUp             cooldown-ms=150 { focus-workspace-up; }
-    Mod+Shift+Page_Down                 cooldown-ms=150 { focus-workspace-down; }
-    Mod+Shift+Page_Up                   cooldown-ms=150 { focus-workspace-up; }
+    Mod+Alt+WheelScrollDown             cooldown-ms=150 { focus-workspace-down; }
+    Mod+Alt+WheelScrollUp               cooldown-ms=150 { focus-workspace-up; }
+    Mod+Alt+Page_Down                   cooldown-ms=150 { focus-workspace-down; }
+    Mod+Alt+Page_Up                     cooldown-ms=150 { focus-workspace-up; }
     
-    Mod+CTRL+Shift+WheelScrollDown      cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+CTRL+Shift+WheelScrollUp        cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+CTRL+Alt+WheelScrollDown      cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+CTRL+Alt+WheelScrollUp        cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+1                               { focus-workspace 1; }
     Mod+2                               { focus-workspace 2; }
@@ -100,9 +100,6 @@ binds {
     Mod+CTRL+9                          { move-column-to-workspace 9; }
 
 
-    Alt+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
-    Alt+Shift+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
-
     // ─── Layout Controls ───
     Mod+C                               { center-column; }
     Mod+CTRL+C                          { center-visible-columns; }
@@ -110,6 +107,12 @@ binds {
     Mod+Equal                           { set-column-width "+10%"; }
     Mod+Shift+Minus                     { set-window-height "-10%"; }
     Mod+Shift+Equal                     { set-window-height "+10%"; }
+    
+    Mod+Alt+Left                        { set-column-width "-10%"; }
+    Mod+Alt+Right                       { set-column-width "+10%"; }
+    Mod+Alt+Down                        { set-window-height "-10%"; }
+    Mod+Alt+Up                          { set-window-height "+10%"; }
+    
     
     Mod+BracketLeft                     { consume-or-expel-window-left; }
     Mod+BracketRight                    { consume-or-expel-window-right; }
@@ -141,6 +144,6 @@ binds {
     // ─── Exit / Power ───
     CTRL+ALT+Delete                     { quit; } // Also quits Niri
     Mod+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
-    Mod+O                               repeat=false { toggle-overview; }
-    Mod+A                               { toggle-overview; }
+    // Mod+O                               repeat=false { toggle-overview; }
+    Mod+A                               repeat=false { toggle-overview; }
 }
