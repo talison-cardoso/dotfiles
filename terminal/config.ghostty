@@ -1,0 +1,35 @@
+theme = noctalia
+font-family = FiraCode Nerd Font
+font-style = Regular
+font-size = 13
+font-thicken = true
+
+adjust-underline-position = 40%
+adjust-underline-thickness = -60%
+
+cursor-style = block
+cursor-style-blink = false
+
+shell-integration = fish
+shell-integration-features = no-cursor
+
+keybind = ctrl+d=new_split:right
+keybind = ctrl+w=close_surface
+
+window-width = 95
+window-height = 25
+window-padding-x = 4
+
+confirm-close-surface = false
+clipboard-paste-protection = false
+unfocused-split-opacity = 1.0
+
+# background = #212121
+# foreground = #f4f4ff
+# cursor-color = #ff0078
+
+# selection-background = 1d3c3b
+# selection-foreground = eeeeee
+
+# palette = 4=#3D52E2
+# palette = 12=#344CFF
