@@ -1,0 +1,171 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# ========================
+# GERAL
+# ========================
+palette     = "catppuccin_mocha"
+add_newline = false
+
+format = """
+$os\
+$directory\
+[](fg:off_white bg:cyan)\
+$git_branch$git_status\
+[](fg:cyan bg:none)\
+$line_break$character
+"""
+
+right_format ="""
+$python\
+$lua\
+$nodejs\
+$rust\
+$golang\
+$dart
+"""
+
+
+# ========================
+# SISTEMA
+# ========================
+[os]
+disabled = false
+style    = "bg:blue fg:white"
+format   = "[](blue)[$symbol  ]($style)[](fg:blue bg:off_white)"
+
+[os.symbols]
+Arch    = ""
+CachyOS = " "
+Ubuntu  = ""
+Windows = ""
+
+[hostname]
+ssh_only = false
+disabled = false
+style    = "bg:surface1 fg:subtext0"
+format   = "[ $hostname]($style)"
+
+# [shell]
+# disabled       = false
+# style          = "bg:surface1 fg:subtext0"
+# fish_indicator = "[ 󰈺 ]($style)"
+
+# ========================
+# PROMPT / DIRETÓRIO
+# ========================
+[character]
+success_symbol = "[ ➜](bold green)"
+error_symbol   = "[✗](bold red)"
+
+[directory]
+format = "[  $path ]($style)"
+style  = "fg:#000000 bg:#e5e5e5"
+
+# ========================
+# GIT
+# ========================
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = "  "
+style  = "fg:#000000 bg:cyan"
+
+[git_status]
+format = '[$all_status]($style)'
+style  = "fg:#000000 bg:cyan"
+
+[git_metrics]
+format        = "([+$added]($added_style))([-$deleted]($deleted_style))"
+added_style   = "fg:#000000 bg:#8bd5fc"
+deleted_style = "fg:#ffffff bg:#d75f5f"
+
+# ========================
+# TEMPO / DURAÇÃO
+# ========================
+[cmd_duration]
+format = "[  $duration ]($style)"
+style  = "fg:#ffffff bg:#1d2230"
+
+[time]
+disabled    = false
+time_format = "%R"
+format      = '[[ 󱑍 $time ](fg:#8DFBD2 bg:#1C3A5E)]($style)'
+style       = "bg:#1C3A5E"
+
+# ========================
+# LINGUAGENS
+# ========================
+[python]
+symbol = "󰌠"
+style = "fg:deep_blue bg:#FFE873"
+format = "[ $symbol $version ]($style)"
+
+
+
+[lua]
+symbol = ""
+style = "fg:#FFFFFF bg:#000080"
+format = "[⮞ $symbol $version ]($style)"
+
+[nodejs]
+symbol = "󰎙"
+style = "fg:#FFFFFF bg:#3C873A"
+format = "[ $symbol $version ]($style)"
+# format = "[](bg: #3C873A )[ $symbol $version ]($style)[](fg:green bg:none)"
+
+[rust]
+symbol = "󱘗"
+style = "fg:#FFFFFF bg:orange"
+format = "[ $symbol $version ]($style)"
+
+[golang]
+symbol = ""
+style = "fg:#FFFFFF bg:#00ADD8"
+format = "[ $symbol $version ]($style)"
+
+
+[dart]
+symbol = ""
+style = "fg:#000000 bg:cyan"
+format = "[ $symbol $version ]($style)"
+
+
+# ========================
+# PALETA CATPPUCCIN MOCHA
+# ========================
+[palettes.catppuccin_mocha]
+cyan = "#00B4AB"
+blue = "#1793D1"
+deep_blue = "#000080"
+white = "#FFFFFF"
+off_white = "#E5E5E5"
+orange = "#ea6934"
+yellow    = "#FFE873"
+green = "#3C873A"
+
+
+# rosewater = "#f5e0dc"
+# flamingo  = "#f2cdcd"
+# pink      = "#f5c2e7"
+# mauve     = "#cba6f7"
+# red       = "#f38ba8"
+# maroon    = "#eba0ac"
+# peach     = "#fab387"
+# yellow    = "#f9e2af"
+# green     = "#a6e3a1"
+# teal      = "#94e2d5"
+# sky       = "#89dceb"
+# sapphire  = "#74c7ec"
+# blue      = "#89b4fa"
+# lavender  = "#b4befe"
+# text      = "#cdd6f4"
+# subtext1  = "#bac2de"
+# subtext0  = "#a6adc8"
+# overlay2  = "#9399b2"
+# overlay1  = "#7f849c"
+# overlay0  = "#6c7086"
+# surface2  = "#585b70"
+# surface1  = "#45475a"
+# surface0  = "#313244"
+# base      = "#1e1e2e"
+# mantle    = "#181825"
+# crust     = "#11111b"
