@@ -4,6 +4,11 @@ window-rule {
 }
 
 window-rule {
+	match app-id="org.gnome.Decibels"
+	open-floating true
+}
+
+window-rule {
     match app-id="steam"
     exclude title=r#"^[Ss]team$"#
     open-floating true
