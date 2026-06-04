@@ -1,3 +1,4 @@
+// 
 binds {
 
     // ────────────── Keybindings ──────────────
@@ -9,17 +10,25 @@ binds {
     Mod+Shift+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Ghostty" { spawn "sh" "-c" "ghostty || alacritty || foot || kitty"; }
-    Mod+Space                           hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    Mod+B		repeat=false           hotkey-overlay-title="Open Browser" { spawn "sh" "-c" "zen-browser || flatpak run app.zen_browser.zen || firefox"; }
-    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
-    Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    Mod+V                               hotkey-overlay-title="Clipboard History" { spawn-sh "win11-clipboard-history"; }
-    Mod+H                               hotkey-overlay-title="Heroic Games Launcher" { spawn-sh "heroic || ~/AppImages/heroic_games_launcher.appimage"; }
-    Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
-    
-    Alt+Tab repeat=false                { spawn "niriswitcherctl" "show" "--window"; }
-    Alt+Shift+Tab repeat=false          { spawn "niriswitcherctl" "show" "--window"; }
+	Mod+Return			repeat=false hotkey-overlay-title="Terminal"	{ spawn "sh" "-c" "ghostty || alacritty || foot || kitty"; }
+	Mod+B				repeat=false hotkey-overlay-title="Browser"	{ spawn "sh" "-c" "zen-browser || flatpak run app.zen_browser.zen || firefox";	 }
+	Mod+E				hotkey-overlay-title="File Manager"			{ spawn "nautilus"; }
+	Mod+H				hotkey-overlay-title="Heroic Games Launcher"	{ spawn-sh "heroic || ~/AppImages/heroic_games_launcher.appimage"; }
+
+	Alt+Tab 															{ spawn "niriswitcherctl" "show" "--window"; }
+    Alt+Shift+Tab 													{ spawn "niriswitcherctl" "show" "--window"; }
+
+	// Launchers _ UI
+	Mod+Space			hotkey-overlay-title="App Launcher"		{ spawn-sh "noctalia msg panel-toggle launcher || qs -c noctalia-shell ipc call launcher toggle"; }
+	Mod+S				hotkey-overlay-title="Control Center"	{ spawn-sh "noctalia msg panel-toggle control-center || qs -c noctalia-shell ipc call settings toggle"; }
+ 	Mod+V				hotkey-overlay-title="Clipboard History" { spawn-sh "noctalia msg panel-toggle clipboard || win11-clipboard-history || qs -c noctalia-shell ipc call launcher clipboard";	}
+	Mod+Alt+E			hotkey-overlay-title="Emoji Picker"		{ spawn-sh "noctalia msg panel-toggle launcher /emo  || win11-clipboard-history || qs -c noctalia-shell ipc call launcher emoji"; }
+	Mod+F11				hotkey-overlay-title="Toogle Bar"		{ spawn-sh "noctalia msg bar-toggle"; }
+	
+	// Session
+	Mod+Alt+L			hotkey-overlay-title="Lock Screen"		{ spawn-sh "qs -c noctalia-shell ipc call lockScreen lock";	}
+	Mod+X				hotkey-overlay-title="Session Menu"		{ spawn-sh "noctalia msg panel-toggle session || qs -c noctalia-shell ipc call sessionMenu toggle";	}
+
 
     // ─── Media Controls ───
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
@@ -36,7 +45,7 @@ binds {
     XF86MonBrightnessDown               allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call brightness decrease"; }
 
     // ─── Window Movement and Focus ───
-    Mod+Q                               { close-window; }
+    Mod+Q                  repeat=false { close-window; }
 
     Mod+Left                            { focus-column-left; }
     Mod+Right                           { focus-column-right; }
@@ -62,8 +71,8 @@ binds {
 
     Mod+Shift+Left                      { focus-monitor-left; }
     Mod+Shift+Right                     { focus-monitor-right; }
-    Mod+Shift+WheelScrollUp    		{ focus-monitor-left; }
-    Mod+Shift+WheelScrollDown  		{ focus-monitor-right; } // Trocar de monitor usando scroll
+    Mod+Shift+WheelScrollUp             { focus-monitor-left; }
+    Mod+Shift+WheelScrollDown           { focus-monitor-right; }
     
     Mod+Shift+CTRL+Left                 { move-column-to-monitor-left; }
     Mod+Shift+CTRL+Right                { move-column-to-monitor-right; }
@@ -76,8 +85,10 @@ binds {
     Mod+Alt+Page_Down                   cooldown-ms=150 { focus-workspace-down; }
     Mod+Alt+Page_Up                     cooldown-ms=150 { focus-workspace-up; }
     
-    Mod+CTRL+Alt+WheelScrollDown      cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+CTRL+Alt+WheelScrollUp        cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+CTRL+Alt+WheelScrollDown        cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+CTRL+Alt+WheelScrollUp          cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+CTRL+Page_Down                  cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+CTRL+Page_Up                    cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+1                               { focus-workspace 1; }
     Mod+2                               { focus-workspace 2; }
@@ -125,12 +136,13 @@ binds {
     Mod+Shift+R                         { reset-window-height; }
 
     // ─── Modes ───
-    Mod+T                               { toggle-window-floating; }
-    Mod+Alt+T				{ switch-focus-between-floating-and-tiling; }
-    Mod+Shift+F                         { fullscreen-window; }
-    Mod+F 			        { maximize-column; }
-    Mod+Ctrl+F                          { expand-column-to-available-width; }
-    Mod+W                               { toggle-column-tabbed-display; }
+    Mod+T                  repeat=false { toggle-window-floating; }
+    Mod+Alt+T                           { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+F            repeat=false { fullscreen-window; }
+    Mod+F                  repeat=false { maximize-column; }
+    Mod+Ctrl+F             repeat=false { expand-column-to-available-width; }
+    Mod+Alt+F              repeat=false { maximize-window-to-edges; }
+    Mod+W                  repeat=false { toggle-column-tabbed-display; }
     
     // ─── Screenshots ───
     CTRL+Print                          { screenshot; }
@@ -140,11 +152,10 @@ binds {
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.
     // It disables any active keyboard shortcut inhibitor, restoring control.
-    Mod+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+ESCAPE   allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // ─── Exit / Power ───
     CTRL+ALT+Delete                     { quit; } // Also quits Niri
     Mod+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
-    // Mod+O                               repeat=false { toggle-overview; }
-    Mod+A                               repeat=false { toggle-overview; }
+    Mod+D                  repeat=false { toggle-overview; }
 }

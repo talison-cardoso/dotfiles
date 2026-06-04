@@ -1,3 +1,4 @@
+//
 include "./cfg/animation.kdl"
 include "./cfg/autostart.kdl"
 include "./cfg/keybinds.kdl"
@@ -9,3 +10,5 @@ include "./cfg/misc.kdl"
 
 // Monique monitor configuration
 include "./cfg/monitors.kdl"
+
+include "noctalia.kdl"
